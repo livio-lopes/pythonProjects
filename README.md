@@ -1,3 +1,3 @@
 # pythonProjects
 
-# Repository created to practice using git and python 3
+# Repository created to practice git and python 3
