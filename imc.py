@@ -14,7 +14,7 @@ print now.second
 """
 
 from datetime import datetime
-atual = datetime.now() #Objeto que captura data e hora do computador
+atual = datetime.now() #Variavel que captura data e hora do computador
 
 #Enquanto o houver erro na entrada da altura e massa, repetir entrada
 while erro_entrada = True:
@@ -35,10 +35,10 @@ while erro_entrada = True:
 		altura = float(altura)
 		massa = float(massa)
 		imc = massa/altura**2
-		erro_entrada = False #Interrompe laço
+		erro_entrada = False #Interrompe repetição
 	except:
 		print('\nVocê digitou altura ou massa de forma errada, por favor, tente novamente\n\n\n')
-
+#Isso pode ser transformado em funções
 if (imc < 18.5):
 	print(f"\n{nome} você nasceu em {ano_nasci}, correto?")
 	if '20' in str(ano_nasci):
