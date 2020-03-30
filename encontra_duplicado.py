@@ -31,16 +31,18 @@ lista_int = [
     [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
 ]
 
+duplicado = []
 
-
- # Itera sobre as listas interiores
-for index in lista_int:
-    # Converte a lista internar (index) em um conjunto
-    conjunto = set(index)
-    # Verifica a partir do conjunto quantos e quais elementos se repetem
+linha = 0
+for lista in lista_int:
+    conjunto = set(lista)  
     for k in conjunto:
-        conta = index.count(k)
-        if conta >=2:
-            print(k, 'tem', conta)
-    # Passa para proxima lista
-    print('Nova lista')
+        coluna = 0
+        conta = 0
+        for i in lista:
+            if k == i:
+                conta +=1
+                if conta >= 2:
+                    print(f'lista {linha} posição {coluna} duplicado {k}')
+            coluna+=1        
+    linha +=1
