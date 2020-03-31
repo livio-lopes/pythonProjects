@@ -31,17 +31,20 @@ lista_int = [
     [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
 ]
 
-duplicado = []
-
 linha = 0
+ # Verifica dentro da lista maior, listas menores
 for lista in lista_int:
-    conjunto = set(lista)  
+    # Cada lista terá um conjunto de elementos
+    conjunto = set(lista)
+    # Verifica cada elemento desse conjunto
     for k in conjunto:
-        coluna = 0
-        conta = 0
+        coluna = 0 
+        conta = 0 # Conta a quantidade de ocorrência
+        # Verifica a ocorrencia do elemento na lista
         for i in lista:
             if k == i:
                 conta +=1
+                # Se o elemento for duplicado, indica: elemento, lista e posição
                 if conta >= 2:
                     print(f'lista {linha} posição {coluna} duplicado {k}')
             coluna+=1        
