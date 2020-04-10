@@ -11,7 +11,10 @@ carrinho= [
 	('Lambrusco Tinto', 80),
 	('Lambrusco Branco', 90)	
 ]
+#Posição na tupla
+produto = 0
+valor = 1 
 # O total será uma lista com os preços dos produtos
-total = sum([item[1] for item in carrinho])
+total = sum([item[valor] for item in carrinho])
 
-print(total)
+print(f'O valor total dessa compra é {total} R$')
