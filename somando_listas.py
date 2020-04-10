@@ -13,7 +13,6 @@ total = [x + y for x,y in soma]
 print(total)
 
 #Solução genérica
-
 lista_soma = []
 if len(lista_1) >= len(lista_2):
 	for index in range(len(lista_2)):
