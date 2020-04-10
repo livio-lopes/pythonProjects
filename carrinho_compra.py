@@ -12,6 +12,6 @@ carrinho= [
 	('Lambrusco Branco', 90)	
 ]
 # O total será uma lista com os preços dos produtos
-total = [item[1] for item in carrinho]
+total = sum([item[1] for item in carrinho])
 
-print(total, type(total),sum(total))
+print(total)
