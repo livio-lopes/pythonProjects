@@ -13,6 +13,7 @@ while True:
 	# Validando CNPJ
 	if entrada == '1':
 		cnpj = input('Digite o CNPJ que deseja validar: ')
+		#cnpj = valida.teste
 		valido = valida.process_cnpj(cnpj)
 		print(f'O CNPJ {cnpj} é Valido'
 		if valido else f'O CNPJ {cnpj} é Inválido')

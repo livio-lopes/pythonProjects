@@ -6,7 +6,8 @@ Feito por Lívio Lopes
 
 lista_digitos = []
 new_string = ''
-
+teste = '33608075000109'
+teste1 = '33.608.075/0001-09'
 # Processa o CNPJ da entrada
 def process_cnpj(string):
 	formatacao = formato(string)
@@ -42,6 +43,7 @@ def tamanho_14(string):
 
 # Retorna uma string correta com tamanho 14 ou 'erro'
 def trata_string(string):
+	new_string = ''
 	for index in string:
 		try:
 			if isinstance(int(index),int):
@@ -62,7 +64,6 @@ def verifica_digito(string):
 			aux = -num-1
 			if aux >9:
 				aux -=8
-			print(new_string[num], aux)
 			acumulador += (int(new_string[num])*aux)
 	except:
 		#Não faz nada
@@ -72,10 +73,8 @@ def verifica_digito(string):
 
 	if digito_1 == int(new_string[-2]):
 		digito_1 = True
-		print(digito_1)
 	else:
 		digito_1 = False
-		print(digito_1)
 
 	acumulador = 0
 	try:
@@ -83,7 +82,6 @@ def verifica_digito(string):
 			aux = -num
 			if aux >9:
 				aux -=8
-			print(new_string[num], aux)
 			acumulador += (int(new_string[num])*aux)
 	except:
 		#Não faz nada
@@ -94,12 +92,12 @@ def verifica_digito(string):
 
 	if digito_2 == int(new_string[-1]):
 		digito_2 = True
-		print(digito_2)
 	else:
 		digito_2 = False
-		print(digito_2)
 	"""
 	Retorna Verdadeiro se o Penultimo digito
 	e o Ultimo digito estiverem certoas.
 	"""
 	return True if digito_1 == digito_2 else False
+
+print(process_cnpj(teste1))
