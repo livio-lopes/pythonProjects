@@ -99,5 +99,3 @@ def verifica_digito(string):
 	e o Ultimo digito estiverem certoas.
 	"""
 	return True if digito_1 == digito_2 else False
-
-print(process_cnpj(teste1))

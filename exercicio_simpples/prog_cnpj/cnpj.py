@@ -19,7 +19,8 @@ while True:
 		if valido else f'O CNPJ {cnpj} é Inválido')
 	# Gerando CNPJ Válido
 	elif entrada == '2':
-		pass
+		cnpj = genex()
+		print(cnpj)
 	# Saindo do programa
 	elif entrada == '3':
 		break
