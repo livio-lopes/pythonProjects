@@ -23,3 +23,22 @@ Banco será responsável autenticar o cliente e as contas da seguinte maneira:
     * Checar se a conta é daquele banco
 Só será possível sacar se passar na autenticação do banco (descrita acima)
 """
+
+from pessoa import Cliente
+from conta import CC, CP
+from bank import Banco
+
+banco = Banco() 
+
+clt1 = Cliente(nome = 'Daniela', idade = 28)
+clt2 = Cliente(nome = 'Ane Carolinda', idade = 24)
+clt3 = Cliente(nome = 'Kalyne', idade = 22)
+
+cont1 = CC(agencia = '1111', num_conta = '22345-3', saldo=535.2)
+cont2 = CP(agencia = '2222', num_conta = '2256345-3', saldo=1200)
+cont3 = CC(agencia = '3124', num_conta = '2256345-3', saldo=0)
+
+clt1.inserir_conta(cont1)
+clt2.inserir_conta(cont2)
+clt3.inserir_conta(cont3)
+
