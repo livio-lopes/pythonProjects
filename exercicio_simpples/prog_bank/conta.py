@@ -9,72 +9,79 @@ Criar classes ContaPoupanca e ContaCorrente que herdam de Conta
 
 
 from abc import ABC, abstractmethod
-
-
+#Conta é uma classe abstrata
 class Conta(ABC):
-
-	#Construtor, variaveis de instância
-	def __init__(self,agencia,num_conta,saldo = 0.0):
-		self._agencia = agencia
-		self._num_conta = num_conta
+	#Construtor
+	def __init__(self, agencia,num,saldo = 0):
+		self._agencia =agencia
+		self._num = num
 		self._saldo = saldo
-
-	# Getters
+	#Getters e Setters
 	@property
 	def agencia(self):
 		return self._agencia
 	@property
-	def num_conta(self):
-		return self._num_conta
+	def num(self):
+		return self._num
 	@property
 	def saldo(self):
 		return self._saldo
-	
-	# Setter
 	@saldo.setter
-	def saldo(self, valor):
-		# Faz um breve tratamento da entrada
-		if not isinstance(valor, (int, float)):
-			print("Você não digitou um valor válido")
-		else:
-			self._saldo = valor
+	def  saldo(self, valor):
+		self._saldo = valor
+	#Métodos da Classe
+	def depositar(self, valor):
+		self._saldo += valor
 
-	def deposito(self, valor):
-		self._saldo += valorPessoa
-		self.exibir()
-
-	def exibir(self):
-		print(f'Agencia: {self._agencia}'
-			f'Conta: {self._num_conta}'
-			f'Saldo: {self._saldo}')
-
-	# Cada conta terá o seu método para saque
 	@abstractmethod
-	def saque(self, valor):	pass
+	def sacar(self, valor):
+		pass
 
-# Conta Corrente
-class CC(Conta):
-	
-	def __init__(self,agencia,num_conta,saldo = 0, cheque_especial=400.0):
-		super().__init__(agencia, num_conta, saldo)
-		self._cheque_especial = cheque_especial
-
-	def saque(self, valor):
+class ContaPoupanca(Conta):
+	def __init__(self,agencia,num,saldo):
+		super().__init__(agencia,num, saldo)
+	def sacar(self,valor):
 		if valor <= self._saldo:
-			self._saldo -= valor
-		elif valor <= (self._saldo + self._cheque_especial):
-			aux = self._saldo - valor
-			self._cheque_especial += aux
-			self._saldo -= valor
-		else:
-			print(f'Seu saldo de {self._saldo} + {self._cheque_especial} o saldo de seu Cheque Especial são inferiores ao valor de {valor} desejado para saque')
+			self.saldo -= valor
+			return
+		print('Saldo insuficiente')
 
-# Conta Poupança
-class CP(Conta):
+class ContaCorrente(Conta):
+	def __init__(self,agencia,num,saldo,limite =400):
+		super().__init__(agencia,num,saldo)
+		self._limite = limite
+
+	@property
+	def limite(self):
+		return self._limite
 	
-	def saque(self, valor):
-		if valor <= self._saldo:
+
+	def sacar(self, valor):
+		if valor <= (self._saldo + self._limite):
 			self._saldo -= valor
-			self.exibir()
-		else:
-			print('Vocẽ não possui saldo na conta para efetuar esse saque')
+			if self._saldo <= 0:
+				self._limite += self._saldo
+			return
+		print('Saldo insuficiente')
+
+
+
+
+"""c1 = ContaPoupanca(1111,1234,100)
+c1.depositar(100)
+print(c1.saldo)
+c1.sacar(50)
+print(c1.saldo)
+c1.sacar(160)
+
+c2 = ContaCorrente(2222,1234,100,100)
+print(c2.limite)
+c2.depositar(50)
+print(c2.saldo)
+c2.sacar(140)
+print(c2.saldo)
+c2.sacar(40)
+print(c2.saldo)
+c2.sacar(100)	
+print(c2.saldo)
+"""
