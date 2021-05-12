@@ -1,11 +1,11 @@
 #REPRESENTAÇÃO EXPLICITA DA LISTA DE ADJACÊNCIAS
 
 lista_adj = { "A" : ["B"],
- 	          "B" : ["C", "D"],
-        	  "C" : ["B", "E"],
+	      "B" : ["C", "D"],
+	      "C" : ["B", "E"],
     	      "D" : ["A"],
-        	  "E" : ["B"]
-        	}
+	      "E" : ["B"]
+	    }
 
 
 
