@@ -1,5 +1,3 @@
-
-
 #REPRESENTAÇÃO EXPLICITA DA LISTA DE ADJACÊNCIAS
 
 lista_adj = { "A" : ["B"],
@@ -20,6 +18,14 @@ matriz_adj =   [[0,1,0,0,0], #A
 				[0,1,0,0,0]] #E
 
 
+
+"""
+Questão 15 -  Faça uma função para obter todos os 
+nós adjacentes (vizinho) a um nó do grafo, 
+dado que o grafo é representado por uma matriz de adjacências.
+
+"""
+
 def mostra_vizinho_matriz(vertice):
 
 	if vertice == "A":
@@ -33,7 +39,12 @@ def mostra_vizinho_matriz(vertice):
 	if vertice == "E":
 		print(matriz_adj[4])
 
+"""
+Questão 16 - Faça uma função para obter todos os nós adjacentes
+(vizinho) a um nó do grafo, dado que o grafo é representado 
+por uma lista de adjacências.
 
+"""
 def mostra_vizinho_lista(vertice):
 	print(lista_adj[vertice])
 
