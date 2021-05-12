@@ -12,10 +12,10 @@ lista_adj = { "A" : ["B"],
 #REPRESENTAÇÃO EXPLICITA DA MATRIZ DE ADJACÊNCIAS
 #		 		 A B C D E
 matriz_adj =   [[0,1,0,0,0], #A
-				[0,0,1,1,0], #B
-				[0,1,0,0,1], #C
-				[1,0,0,0,0], #D
-				[0,1,0,0,0]] #E
+		[0,0,1,1,0], #B
+		[0,1,0,0,1], #C
+		[1,0,0,0,0], #D
+		[0,1,0,0,0]] #E
 
 
 
