@@ -1,4 +1,11 @@
+"""
+Uma  pessoa tem nome e idade.
 
+Enquanto uma pessao fala, ela não come. Vice versa.
+
+Se está realizando uma ação, tem que de interromper 
+a ação corrente para executar outra.
+"""
 
 
 
