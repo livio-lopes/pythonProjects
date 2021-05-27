@@ -12,6 +12,12 @@ import numpy as np
 def sigmoid(valor):
     return 1/(1+ np.exp(-valor))
 
+# Direção do Gradiente, critério de parada
+def sigmoidDerivate(sig):
+    return sig*(1-sig)
+
+
+
 # Entradas para o operador lógico XOR
 x = np.array([[0,0],
              [0,1],
@@ -26,6 +32,10 @@ w1 = np.array([[-0.424,-0.740,-0.961],
 w2 = np.array([[-0.017],[-0.893],[0.148]])
 # Épocas/ Quantidade de treinos
 time_training = 100
+# Momento
+momentum =1 
+# Taxa de aprendizado
+learning_rate = 0.3
 
 for i in range(time_training):
     input_layer = x
@@ -39,3 +49,18 @@ for i in range(time_training):
     erro_output_layer = y - output_layer
     # Se usa np.abs() para obter o módulo dos erros da camada de saída
     erro_mean = np.mean(np.abs(erro_output_layer))
+    print('Acerto: '+ str(1-erro_mean))
+    # REVER
+    output_derivate = sigmoidDerivate(output_layer)
+    output_delta = erro_output_layer*output_derivate
+    w1_transposed = w1.T
+    delta_output_w1 = output_delta.dot(w1_transposed)
+    hiden_delta = delta_output_w1*sigmoidDerivate(hiden_layer)
+    # Atualizando os pesos da camada intermediaria
+    hiden_layer_transposed = hiden_layer.T
+    w2_new = hiden_layer_transposed.dot(output_delta)
+    w2 = (w2*momentum)+(w2_new*learning_rate)
+    # Atualizando os pesos da camada de entrada
+    input_layer_tranposed = input_layer.T
+    w1_new = input_layer_tranposed.dot(hiden_delta)
+    w1 = (w1*momentum)+(w1_new*learning_rate)
