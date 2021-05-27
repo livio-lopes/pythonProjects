@@ -35,3 +35,7 @@ for i in range(time_training):
     # Produto escalar entre camada intermediaria e os seus respectivos pesos
     hiden_synapse = np.dot(hiden_layer,w2)
     output_layer = sigmoid(hiden_synapse)
+    # Calculando erros da camada de saída
+    erro_output_layer = y - output_layer
+    # Se usa np.abs() para obter o módulo dos erros da camada de saída
+    erro_mean = np.mean(np.abs(erro_output_layer))
