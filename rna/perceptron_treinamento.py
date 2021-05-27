@@ -8,10 +8,23 @@ Created on Wed May 26 23:38:31 2021
 
 import numpy as np
 
+"""
+OPERADOR AND
 #Entradas
 x = np.array([[0,0],[0,1],[1,0],[1,1]])
 #Saídas
 y = np.array([0,0,0,1])
+"""
+
+""" 
+
+OPERADOR OR
+#Entradas
+x = np.array([[0,0],[0,1],[1,0],[1,1]])
+#Saídas
+y = np.array([0,1,1,1])
+
+"""
 #Pesos
 w = np.array([0.0,0.0])
 #Taxa de aprendizagem
@@ -29,7 +42,7 @@ def calculateOutput(register):
     result = register.dot(w)
     return functionActivation(result)
 
-#Treinamento
+#Treinamento, encontra o melhor conjunto de pesos
 def training ():
     erroTotal = 1
     while (erroTotal != 0):
@@ -48,3 +61,9 @@ def training ():
         print('Total de Erros: ' +str(erroTotal))
         
 training()
+print('Rede Treinada!')
+#Com a rede treinada, testa se as respostas sairão sem erros
+print(calculateOutput((x[0])))
+print(calculateOutput((x[1])))
+print(calculateOutput((x[2])))
+print(calculateOutput((x[3])))
