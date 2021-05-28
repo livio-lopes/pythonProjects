@@ -18,6 +18,7 @@ w2 = np.array([[-0.017],[-0.893],[0.148]])
 """
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 #Função de Ativação
 def sigmoid(valor):
@@ -54,13 +55,19 @@ w1 = 2*np.random.random((neuro_input,neuro_hiden))-1
 w2 = 2*np.random.random((neuro_hiden,neuro_output))-1
 
 # Épocas/ Quantidade de treinos
-time_training = 100
+time_training = 10000
 
 # Momento
 momentum =1 
 
 # Taxa de aprendizado
 learning_rate = 0.3
+
+# Criando lista com histórico de erro para plotagem
+list_mse = []
+
+# Criando uma lista elementos com as épocas para plotagem
+list_time_training = np.arange(0,time_training,1)
 
 for i in range(time_training):
     input_layer = x
@@ -78,7 +85,9 @@ for i in range(time_training):
     
     # Erro médio quadrático
     mse = np.mean(erro_output_layer**2)
-    print('Acerto: '+ str(1-mse))
+    
+    # Salvando o MSE em uma lista para plotagem
+    list_mse.append(mse)
     
     # Calculando pesos da camada de saída
     output_derivate = sigmoidDerivate(output_layer)
@@ -98,3 +107,12 @@ for i in range(time_training):
     input_layer_tranposed = input_layer.T
     w1_new = input_layer_tranposed.dot(hiden_delta)
     w1 = (w1*momentum)+(w1_new*learning_rate)
+    
+# Plotando grafico  
+fig, ax = plt.subplots()
+ax.plot(list_time_training, list_mse)  
+ax.set(xlabel='Época', ylabel='Taxa de erro',
+       title='Relação de Época e Taxa de erro')
+ax.grid()
+fig.savefig("test.png")
+plt.show()
