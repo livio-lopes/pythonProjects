@@ -48,13 +48,13 @@ neuro_hiden = 3
 neuro_output = 1
 
 # Inicializando aleatóriamente um conjunto de pesos, camada de entrada
-w1 = 2*np.random.random(neuro_input,neuro_hiden)-1
+w1 = 2*np.random.random((neuro_input,neuro_hiden))-1
 
 # Inicializando aleatóriamente um conjunto de pesos, camada intermediaria
-w2 = 2*np.random.random(neuro_hiden,neuro_output)
+w2 = 2*np.random.random((neuro_hiden,neuro_output))-1
 
 # Épocas/ Quantidade de treinos
-time_training = 1000000
+time_training = 100
 
 # Momento
 momentum =1 
@@ -64,27 +64,36 @@ learning_rate = 0.3
 
 for i in range(time_training):
     input_layer = x
+    
     # Produto escalar entre camada entrada e os seus respectivos pesos
     input_synapse = np.dot(input_layer, w1)
     hiden_layer = sigmoid(input_synapse)
+    
     # Produto escalar entre camada intermediaria e os seus respectivos pesos
     hiden_synapse = np.dot(hiden_layer,w2)
     output_layer = sigmoid(hiden_synapse)
+    
     # Calculando erros da camada de saída
     erro_output_layer = y - output_layer
-    # Se usa np.abs() para obter o módulo dos erros da camada de saída
-    erro_mean = np.mean(np.abs(erro_output_layer))
-    print('Acerto: '+ str(1-erro_mean))
-    # REVER
+    
+    # Erro médio quadrático
+    mse = np.mean(erro_output_layer**2)
+    print('Acerto: '+ str(1-mse))
+    
+    # Calculando pesos da camada de saída
     output_derivate = sigmoidDerivate(output_layer)
     output_delta = erro_output_layer*output_derivate
+    
+    # Calculando pesos da camada intermediaria
     w2_transposed = w2.T 
-    delta_output_w1 = output_delta.dot(w2_transposed)
-    hiden_delta = delta_output_w1*sigmoidDerivate(hiden_layer)
+    delta_output_w2 = output_delta.dot(w2_transposed)
+    hiden_delta = delta_output_w2*sigmoidDerivate(hiden_layer)
+    
     # Atualizando os pesos da camada intermediaria
     hiden_layer_transposed = hiden_layer.T
     w2_new = hiden_layer_transposed.dot(output_delta)
     w2 = (w2*momentum)+(w2_new*learning_rate)
+    
     # Atualizando os pesos da camada de entrada
     input_layer_tranposed = input_layer.T
     w1_new = input_layer_tranposed.dot(hiden_delta)
