@@ -6,6 +6,17 @@ Created on Thu May 27 08:29:16 2021
 @author: marunga
 """
 
+"""
+A caso seja interessante configurar o conjunto de pesos manualmente
+esse deve ser o formato
+
+# Pesos da camada de entrada
+w1 = np.array([[-0.424,-0.740,-0.961],
+               [0.358, -0.577, -0.469]])
+# Pesos da camada intermediária
+w2 = np.array([[-0.017],[-0.893],[0.148]])
+"""
+
 import numpy as np
 
 #Função de Ativação
@@ -23,17 +34,31 @@ x = np.array([[0,0],
              [0,1],
              [1,0],
              [1,1]])
+
 # Saidas para o operador lógico XOR
 y = np.array([[0],[1],[1],[0]])
-# Pesos da camada de entrada
-w1 = np.array([[-0.424,-0.740,-0.961],
-               [0.358, -0.577, -0.469]])
-# Pesos da camada intermediária
-w2 = np.array([[-0.017],[-0.893],[0.148]])
+
+# Quantidade de Neurônios na camada de entrada
+neuro_input = 2
+
+# Quantidade de Neurônios na camada intermediária
+neuro_hiden = 3
+
+# Quantidade de Neurônios na camada de saída
+neuro_output = 1
+
+# Inicializando aleatóriamente um conjunto de pesos, camada de entrada
+w1 = 2*np.random.random(neuro_input,neuro_hiden)-1
+
+# Inicializando aleatóriamente um conjunto de pesos, camada intermediaria
+w2 = 2*np.random.random(neuro_hiden,neuro_output)
+
 # Épocas/ Quantidade de treinos
-time_training = 100
+time_training = 1000000
+
 # Momento
 momentum =1 
+
 # Taxa de aprendizado
 learning_rate = 0.3
 
@@ -53,8 +78,8 @@ for i in range(time_training):
     # REVER
     output_derivate = sigmoidDerivate(output_layer)
     output_delta = erro_output_layer*output_derivate
-    w1_transposed = w1.T
-    delta_output_w1 = output_delta.dot(w1_transposed)
+    w2_transposed = w2.T 
+    delta_output_w1 = output_delta.dot(w2_transposed)
     hiden_delta = delta_output_w1*sigmoidDerivate(hiden_layer)
     # Atualizando os pesos da camada intermediaria
     hiden_layer_transposed = hiden_layer.T
