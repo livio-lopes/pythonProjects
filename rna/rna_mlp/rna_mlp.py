@@ -24,10 +24,9 @@ import matplotlib.pyplot as plt
 def sigmoid(valor):
     return 1/(1+ np.exp(-valor))
 
-# Direção do Gradiente, critério de parada
+# Derivada da função ativação
 def sigmoidDerivate(sig):
     return sig*(1-sig)
-
 
 
 # Entradas para o operador lógico XOR
@@ -55,7 +54,7 @@ w1 = 2*np.random.random((neuro_input,neuro_hiden))-1
 w2 = 2*np.random.random((neuro_hiden,neuro_output))-1
 
 # Épocas/ Quantidade de treinos
-time_training = 10000
+time_training = 1000000
 
 # Momento
 momentum =1 
@@ -108,7 +107,7 @@ for i in range(time_training):
     w1_new = input_layer_tranposed.dot(hiden_delta)
     w1 = (w1*momentum)+(w1_new*learning_rate)
     
-# Plotando grafico  
+# Plotando grafico de linha
 fig, ax = plt.subplots()
 ax.plot(list_time_training, list_mse)  
 ax.set(xlabel='Época', ylabel='Taxa de erro',
@@ -116,3 +115,6 @@ ax.set(xlabel='Época', ylabel='Taxa de erro',
 ax.grid()
 fig.savefig("test.png")
 plt.show()
+
+
+
